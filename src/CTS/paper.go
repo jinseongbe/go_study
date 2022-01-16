@@ -28,6 +28,7 @@ func main() {
 	for i := 0; i < n; i++ {
 		if numSlice[i] < x {
 			fmt.Printf("%d ", numSlice[i])
+
 		}
 	}
 }
