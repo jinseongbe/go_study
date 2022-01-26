@@ -5,22 +5,40 @@ import (
 )
 
 func main() {
-	var a, b int
+	var n int
+	var str string
 
-	fmt.Scanf("%d %d", &a, &b)
+	fmt.Scanf("%d", &n)
 
-	for i := 1; i <= 100; i *= 10 {
-		if ((a / i) % 10) > ((b / i) % 10) {
-
-			fmt.Printf("%d%d%d", (a % 10), ((a / 10) % 10), ((a / 100) % 10))
-			break
-		} else if ((a / i) % 10) < ((b / i) % 10) {
-
-			fmt.Printf("%d%d%d", (b % 10), ((b / 10) % 10), ((b / 100) % 10))
-			break
-		} else {
-			continue
+	for i := 0; i < n; i++ {
+		fmt.Scanf("%s", &str)
+		if checkGroupWord(str) {
+			fmt.Println(str, "is group-word")
 		}
 	}
 
+}
+
+func checkGroupWord(str string) bool {
+	groupFlag := true
+	alpha := "abcdefghijklmnopqrstuvwxyz"
+	var flags [26]int
+	for i := 0; i < 26; i++ {
+		flags[i] = 0
+	}
+
+	for i := 0; i < len(str); i++ {
+		for idx, char := range alpha {
+			if flags[idx] != 1 && rune(str[i]) == char {
+				if i != 0 && str[i-1] != str[i] && flags[idx] == 1 {
+					groupFlag = false
+					break
+				}
+				flags[idx] = 1
+			}
+		}
+
+	}
+
+	return groupFlag
 }
