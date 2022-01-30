@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 )
 
@@ -49,8 +47,7 @@ func calculater(a string, b string, sumNums []int) []int {
 func main() {
 	var a, b string
 	var sumNums []int
-	wr := bufio.NewWriter(os.Stdin)
-	defer wr.Flush()
+
 	fmt.Scanf("%s %s", &a, &b)
 
 	if len(a) > len(b) {
@@ -62,10 +59,8 @@ func main() {
 	}
 
 	for i := 0; i < len(sumNums); i++ {
-		wr.WriteString(strconv.Itoa(sumNums[len(sumNums)-i-1]))
-		// fmt.Print(sumNums[len(sumNums)-i-1])
+		fmt.Print(sumNums[len(sumNums)-i-1])
 	}
-
 }
 
 // 라이브러리 사용
